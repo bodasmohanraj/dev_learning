@@ -1,5 +1,163 @@
-first line of code 
+-- =====================================================
+-- SQL Practice Script with 50+ rows and multiple columns
+-- =====================================================
 
+-- 1) Customers table
+CREATE TABLE IF NOT EXISTS parks_and_recreation.customers (
+    customer_id INT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    city VARCHAR(50),
+    country VARCHAR(50),
+    age INT,
+    is_active BOOLEAN,
+    signup_date DATE,
+    annual_spend DECIMAL(10,2)
+);
 
-regard 
-richards
+INSERT INTO customers (
+    customer_id, first_name, last_name, email, city, country,
+    age, is_active, signup_date, annual_spend
+) VALUES
+(1, 'Alice', 'Johnson', 'alice.johnson@example.com', 'New York', 'USA', 29, TRUE, '2023-01-15', 5400.00),
+(2, 'Bob', 'Smith', 'bob.smith@example.com', 'London', 'UK', 35, TRUE, '2022-06-10', 9200.50),
+(3, 'Charlie', 'Brown', 'charlie.brown@example.com', 'Toronto', 'Canada', 41, FALSE, '2021-11-22', 4600.75),
+(4, 'Diana', 'Lee', 'diana.lee@example.com', 'Seoul', 'South Korea', 27, TRUE, '2024-02-05', 7800.00),
+(5, 'Ethan', 'Wilson', 'ethan.wilson@example.com', 'Sydney', 'Australia', 33, TRUE, '2020-09-18', 11050.25),
+(6, 'Fiona', 'Martinez', 'fiona.martinez@example.com', 'Madrid', 'Spain', 31, FALSE, '2023-07-30', 3500.10),
+(7, 'George', 'Taylor', 'george.taylor@example.com', 'Chicago', 'USA', 38, TRUE, '2019-04-02', 12400.00),
+(8, 'Hannah', 'Anderson', 'hannah.anderson@example.com', 'Berlin', 'Germany', 26, TRUE, '2024-03-15', 6750.40),
+(9, 'Isaac', 'Thomas', 'isaac.thomas@example.com', 'Paris', 'France', 45, TRUE, '2021-05-25', 9900.70),
+(10, 'Julia', 'Moore', 'julia.moore@example.com', 'Mexico City', 'Mexico', 30, FALSE, '2022-08-08', 5100.60),
+(11, 'Kevin', 'Jackson', 'kevin.jackson@example.com', 'Cape Town', 'South Africa', 28, TRUE, '2023-09-14', 7200.90),
+(12, 'Laura', 'White', 'laura.white@example.com', 'Dubai', 'UAE', 34, TRUE, '2020-12-12', 15800.00),
+(13, 'Michael', 'Harris', 'michael.harris@example.com', 'Tokyo', 'Japan', 40, TRUE, '2018-11-04', 17600.75),
+(14, 'Nina', 'Martin', 'nina.martin@example.com', 'Rome', 'Italy', 29, FALSE, '2023-10-09', 4300.20),
+(15, 'Oliver', 'Clark', 'oliver.clark@example.com', 'Singapore', 'Singapore', 36, TRUE, '2022-02-23', 9800.10),
+(16, 'Priya', 'Patel', 'priya.patel@example.com', 'Mumbai', 'India', 32, TRUE, '2021-07-17', 8700.45),
+(17, 'Quinn', 'Lewis', 'quinn.lewis@example.com', 'Vancouver', 'Canada', 24, TRUE, '2024-04-12', 4100.55),
+(18, 'Rosa', 'Walker', 'rosa.walker@example.com', 'Manchester', 'UK', 39, FALSE, '2019-06-06', 6800.80),
+(19, 'Samuel', 'Hall', 'samuel.hall@example.com', 'Boston', 'USA', 42, TRUE, '2020-03-30', 11250.00),
+(20, 'Tina', 'Allen', 'tina.allen@example.com', 'Los Angeles', 'USA', 31, TRUE, '2023-11-21', 9500.25),
+(21, 'Uma', 'Young', 'uma.young@example.com', 'Brisbane', 'Australia', 27, TRUE, '2024-05-02', 6100.10),
+(22, 'Victor', 'King', 'victor.king@example.com', 'Lisbon', 'Portugal', 44, FALSE, '2018-08-16', 5400.00),
+(23, 'Wendy', 'Scott', 'wendy.scott@example.com', 'Amsterdam', 'Netherlands', 33, TRUE, '2022-04-11', 12350.90),
+(24, 'Xavier', 'Green', 'xavier.green@example.com', 'Cairo', 'Egypt', 37, TRUE, '2021-09-27', 7600.60),
+(25, 'Yara', 'Baker', 'yara.baker@example.com', 'Johannesburg', 'South Africa', 29, FALSE, '2023-12-19', 4900.30),
+(26, 'Zach', 'Adams', 'zach.adams@example.com', 'Denver', 'USA', 46, TRUE, '2017-10-11', 19000.00),
+(27, 'Ava', 'Nelson', 'ava.nelson@example.com', 'Auckland', 'New Zealand', 28, TRUE, '2024-01-18', 7100.45),
+(28, 'Benjamin', 'Carter', 'benjamin.carter@example.com', 'Atlanta', 'USA', 35, TRUE, '2021-02-09', 10850.70),
+(29, 'Chloe', 'Mitchell', 'chloe.mitchell@example.com', 'Dublin', 'Ireland', 30, FALSE, '2022-06-14', 5000.00),
+(30, 'Daniel', 'Perez', 'daniel.perez@example.com', 'Bogota', 'Colombia', 41, TRUE, '2020-08-21', 14350.50),
+(31, 'Emma', 'Roberts', 'emma.roberts@example.com', 'Edinburgh', 'UK', 25, TRUE, '2024-03-01', 3900.80),
+(32, 'Frank', 'Turner', 'frank.turner@example.com', 'Helsinki', 'Finland', 43, TRUE, '2021-01-12', 11800.60),
+(33, 'Grace', 'Phillips', 'grace.phillips@example.com', 'Oslo', 'Norway', 32, TRUE, '2022-09-25', 8300.20),
+(34, 'Henry', 'Campbell', 'henry.campbell@example.com', 'Montreal', 'Canada', 39, FALSE, '2023-06-18', 6200.40),
+(35, 'Ivy', 'Parker', 'ivy.parker@example.com', 'Lima', 'Peru', 26, TRUE, '2024-02-24', 4700.65),
+(36, 'Jack', 'Evans', 'jack.evans@example.com', 'Birmingham', 'UK', 36, TRUE, '2019-12-05', 9100.95),
+(37, 'Kyla', 'Edwards', 'kyla.edwards@example.com', 'Naples', 'Italy', 27, FALSE, '2023-05-13', 4050.25),
+(38, 'Leo', 'Collins', 'leo.collins@example.com', 'Stockholm', 'Sweden', 49, TRUE, '2018-04-18', 16100.00),
+(39, 'Maya', 'Stewart', 'maya.stewart@example.com', 'San Diego', 'USA', 34, TRUE, '2022-07-28', 10500.75),
+(40, 'Noah', 'Sanchez', 'noah.sanchez@example.com', 'Buenos Aires', 'Argentina', 31, TRUE, '2021-11-11', 8900.10),
+(41, 'Olivia', 'Morris', 'olivia.morris@example.com', 'Athens', 'Greece', 28, FALSE, '2023-10-02', 5200.35),
+(42, 'Paul', 'Rogers', 'paul.rogers@example.com', 'Prague', 'Czech Republic', 45, TRUE, '2017-05-09', 19850.00),
+(43, 'Quiana', 'Reed', 'quiana.reed@example.com', 'Nairobi', 'Kenya', 30, TRUE, '2024-06-01', 6300.50),
+(44, 'Ryan', 'Cook', 'ryan.cook@example.com', 'Dallas', 'USA', 37, TRUE, '2020-02-14', 11700.25),
+(45, 'Sofia', 'Morgan', 'sofia.morgan@example.com', 'Zurich', 'Switzerland', 29, TRUE, '2023-03-27', 8800.90),
+(46, 'Theo', 'Bell', 'theo.bell@example.com', 'Milan', 'Italy', 41, FALSE, '2019-09-19', 7010.15),
+(47, 'Uma', 'Ward', 'uma.ward@example.com', 'Hartford', 'USA', 33, TRUE, '2022-05-05', 7600.45),
+(48, 'Vera', 'Brooks', 'vera.brooks@example.com', 'Kyiv', 'Ukraine', 38, TRUE, '2021-08-23', 12340.80),
+(49, 'Warren', 'Foster', 'warren.foster@example.com', 'Hamburg', 'Germany', 31, FALSE, '2024-04-21', 5400.60),
+(50, 'Ximena', 'Rivera', 'ximena.rivera@example.com', 'Santiago', 'Chile', 35, TRUE, '2020-06-15', 9800.50),
+(51, 'Yusuf', 'Kelly', 'yusuf.kelly@example.com', 'Lisbon', 'Portugal', 40, TRUE, '2021-12-03', 14600.90),
+(52, 'Zoe', 'Sanders', 'zoe.sanders@example.com', 'Copenhagen', 'Denmark', 27, TRUE, '2023-08-08', 6500.10),
+(53, 'Aaron', 'Price', 'aaron.price@example.com', 'Seattle', 'USA', 48, TRUE, '2018-03-17', 22100.00),
+(54, 'Bella', 'Bennett', 'bella.bennett@example.com', 'Melbourne', 'Australia', 32, TRUE, '2022-11-14', 9300.70),
+(55, 'Caleb', 'Wood', 'caleb.wood@example.com', 'Rotterdam', 'Netherlands', 36, FALSE, '2020-10-29', 6900.25),
+(56, 'Delia', 'Coleman', 'delia.coleman@example.com', 'Brussels', 'Belgium', 29, TRUE, '2023-07-07', 5600.45),
+(57, 'Eli', 'Ramirez', 'eli.ramirez@example.com', 'San Jose', 'USA', 34, TRUE, '2021-03-18', 10950.50),
+(58, 'Faith', 'Ross', 'faith.ross@example.com', 'Bangalore', 'India', 26, FALSE, '2024-01-30', 4500.90),
+(59, 'Gabriel', 'Brooks', 'gabriel.brooks@example.com', 'Munich', 'Germany', 44, TRUE, '2019-07-09', 17500.20),
+(60, 'Holly', 'Long', 'holly.long@example.com', 'Houston', 'USA', 30, TRUE, '2023-02-28', 8400.35);
+
+-- 2) Products table
+CREATE TABLE IF NOT EXISTS parks_and_recreation.products (
+    product_id INT PRIMARY KEY,
+    product_name VARCHAR(100) NOT NULL,
+    category VARCHAR(50),
+    price DECIMAL(10,2),
+    stock_quantity INT,
+    is_in_stock BOOLEAN,
+    rating DECIMAL(3,2)
+);
+
+INSERT INTO products (product_id, product_name, category, price, stock_quantity, is_in_stock, rating)
+VALUES
+(101, 'Laptop Pro 14', 'Electronics', 1299.99, 25, TRUE, 4.80),
+(102, 'Wireless Mouse', 'Accessories', 39.99, 150, TRUE, 4.60),
+(103, 'Office Chair', 'Furniture', 249.50, 18, TRUE, 4.40),
+(104, 'Coffee Maker', 'Home', 89.00, 40, FALSE, 4.20),
+(105, 'Gaming Headset', 'Electronics', 79.95, 64, TRUE, 4.90),
+(106, 'Notebook Set', 'Stationery', 12.50, 200, TRUE, 4.10),
+(107, '4K Monitor', 'Electronics', 399.99, 35, TRUE, 4.70),
+(108, 'Desk Lamp', 'Home', 54.00, 75, TRUE, 4.30),
+(109, 'Backpack', 'Accessories', 65.00, 80, TRUE, 4.50),
+(110, 'Mechanical Keyboard', 'Electronics', 119.99, 55, TRUE, 4.80),
+(111, 'Standing Desk', 'Furniture', 499.00, 12, TRUE, 4.60),
+(112, 'Water Bottle', 'Lifestyle', 22.00, 180, TRUE, 4.10);
+
+-- 3) Orders table
+CREATE TABLE IF NOT EXISTS parks_and_recreation.orders (
+    order_id INT PRIMARY KEY,
+    customer_id INT,
+    order_date DATE,
+    total_amount DECIMAL(10,2),
+    order_status VARCHAR(30),
+    payment_method VARCHAR(30),
+    shipping_city VARCHAR(50),
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+
+INSERT INTO orders (order_id, customer_id, order_date, total_amount, order_status, payment_method, shipping_city)
+VALUES
+(5001, 1, '2024-01-10', 1349.98, 'Completed', 'Credit Card', 'New York'),
+(5002, 2, '2024-01-12', 89.99, 'Shipped', 'PayPal', 'London'),
+(5003, 3, '2024-01-20', 249.50, 'Pending', 'Debit Card', 'Toronto'),
+(5004, 5, '2024-02-02', 1379.94, 'Completed', 'Credit Card', 'Sydney'),
+(5005, 1, '2024-02-09', 39.99, 'Delivered', 'PayPal', 'New York'),
+(5006, 4, '2024-02-15', 159.95, 'Shipped', 'Bank Transfer', 'Seoul'),
+(5007, 8, '2024-02-20', 499.00, 'Completed', 'Credit Card', 'Berlin'),
+(5008, 12, '2024-02-25', 119.99, 'Delivered', 'PayPal', 'Dubai'),
+(5009, 15, '2024-03-05', 95.00, 'Completed', 'Debit Card', 'Singapore'),
+(5010, 18, '2024-03-10', 1599.99, 'Shipped', 'Credit Card', 'Manchester'),
+(5011, 21, '2024-03-14', 89.00, 'Completed', 'PayPal', 'Brisbane'),
+(5012, 23, '2024-03-18', 399.99, 'Pending', 'Bank Transfer', 'Amsterdam');
+
+-- 4) Useful practice queries
+SELECT * FROM parks_and_recreation.customers;
+SELECT * FROM parks_and_recreation.products;
+SELECT * FROM parks_and_recreation.orders;
+
+-- Example 1: Join customers with orders
+SELECT c.customer_id, c.first_name, c.country, o.order_id, o.total_amount
+FROM parks_and_recreation.customers c
+JOIN parks_and_recreation.orders o ON c.customer_id = o.customer_id;
+
+-- Example 2: Filter active customers and high spenders
+SELECT *
+FROM parks_and_recreation.customers
+WHERE is_active = TRUE AND annual_spend > 10000
+ORDER BY annual_spend DESC;
+
+-- Example 3: Products with good rating and in stock
+SELECT product_name, category, price, rating
+FROM parks_and_recreation.products
+WHERE is_in_stock = TRUE AND rating >= 4.5
+ORDER BY price DESC;
+
+-- Example 4: Count customers by country
+SELECT country, COUNT(*) AS total_customers
+FROM parks_and_recreation.customers
+GROUP BY country
+ORDER BY total_customers DESC;
